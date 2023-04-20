@@ -1,0 +1,18 @@
+{
+  "name": "lens-voting-osx",
+  "license": "UNLICENSED",
+  "scripts": {
+    "codegen": "graph codegen",
+    "build": "graph build",
+    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ pythonpete32/lens-voting-osx",
+    "create-local": "graph create --node http://localhost:8020/ pythonpete32/lens-voting-osx",
+    "remove-local": "graph remove --node http://localhost:8020/ pythonpete32/lens-voting-osx",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 pythonpete32/lens-voting-osx",
+    "test": "graph test"
+  },
+  "dependencies": {
+    "@graphprotocol/graph-cli": "0.47.0",
+    "@graphprotocol/graph-ts": "0.29.1"
+  },
+  "devDependencies": { "matchstick-as": "0.5.0" }
+}
