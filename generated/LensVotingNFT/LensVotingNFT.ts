@@ -74,4 +74,174 @@ export class LensVotingNFT extends ethereum.SmartContract {
   static bind(address: Address): LensVotingNFT {
     return new LensVotingNFT("LensVotingNFT", address);
   }
+
+  getDelegatedSupplyByBlockNumber(blockNumber: BigInt): BigInt {
+    let result = super.call(
+      "getDelegatedSupplyByBlockNumber",
+      "getDelegatedSupplyByBlockNumber(uint256):(uint256)",
+      [ethereum.Value.fromUnsignedBigInt(blockNumber)]
+    );
+
+    return result[0].toBigInt();
+  }
+
+  try_getDelegatedSupplyByBlockNumber(
+    blockNumber: BigInt
+  ): ethereum.CallResult<BigInt> {
+    let result = super.tryCall(
+      "getDelegatedSupplyByBlockNumber",
+      "getDelegatedSupplyByBlockNumber(uint256):(uint256)",
+      [ethereum.Value.fromUnsignedBigInt(blockNumber)]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBigInt());
+  }
+
+  getPowerByBlockNumber(user: Address, blockNumber: BigInt): BigInt {
+    let result = super.call(
+      "getPowerByBlockNumber",
+      "getPowerByBlockNumber(address,uint256):(uint256)",
+      [
+        ethereum.Value.fromAddress(user),
+        ethereum.Value.fromUnsignedBigInt(blockNumber)
+      ]
+    );
+
+    return result[0].toBigInt();
+  }
+
+  try_getPowerByBlockNumber(
+    user: Address,
+    blockNumber: BigInt
+  ): ethereum.CallResult<BigInt> {
+    let result = super.tryCall(
+      "getPowerByBlockNumber",
+      "getPowerByBlockNumber(address,uint256):(uint256)",
+      [
+        ethereum.Value.fromAddress(user),
+        ethereum.Value.fromUnsignedBigInt(blockNumber)
+      ]
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBigInt());
+  }
+
+  mint(to: Address): BigInt {
+    let result = super.call("mint", "mint(address):(uint256)", [
+      ethereum.Value.fromAddress(to)
+    ]);
+
+    return result[0].toBigInt();
+  }
+
+  try_mint(to: Address): ethereum.CallResult<BigInt> {
+    let result = super.tryCall("mint", "mint(address):(uint256)", [
+      ethereum.Value.fromAddress(to)
+    ]);
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBigInt());
+  }
+}
+
+export class DelegateCall extends ethereum.Call {
+  get inputs(): DelegateCall__Inputs {
+    return new DelegateCall__Inputs(this);
+  }
+
+  get outputs(): DelegateCall__Outputs {
+    return new DelegateCall__Outputs(this);
+  }
+}
+
+export class DelegateCall__Inputs {
+  _call: DelegateCall;
+
+  constructor(call: DelegateCall) {
+    this._call = call;
+  }
+
+  get delegatee(): Address {
+    return this._call.inputValues[0].value.toAddress();
+  }
+}
+
+export class DelegateCall__Outputs {
+  _call: DelegateCall;
+
+  constructor(call: DelegateCall) {
+    this._call = call;
+  }
+}
+
+export class InitializeCall extends ethereum.Call {
+  get inputs(): InitializeCall__Inputs {
+    return new InitializeCall__Inputs(this);
+  }
+
+  get outputs(): InitializeCall__Outputs {
+    return new InitializeCall__Outputs(this);
+  }
+}
+
+export class InitializeCall__Inputs {
+  _call: InitializeCall;
+
+  constructor(call: InitializeCall) {
+    this._call = call;
+  }
+
+  get profileId(): BigInt {
+    return this._call.inputValues[0].value.toBigInt();
+  }
+}
+
+export class InitializeCall__Outputs {
+  _call: InitializeCall;
+
+  constructor(call: InitializeCall) {
+    this._call = call;
+  }
+}
+
+export class MintCall extends ethereum.Call {
+  get inputs(): MintCall__Inputs {
+    return new MintCall__Inputs(this);
+  }
+
+  get outputs(): MintCall__Outputs {
+    return new MintCall__Outputs(this);
+  }
+}
+
+export class MintCall__Inputs {
+  _call: MintCall;
+
+  constructor(call: MintCall) {
+    this._call = call;
+  }
+
+  get to(): Address {
+    return this._call.inputValues[0].value.toAddress();
+  }
+}
+
+export class MintCall__Outputs {
+  _call: MintCall;
+
+  constructor(call: MintCall) {
+    this._call = call;
+  }
+
+  get value0(): BigInt {
+    return this._call.outputValues[0].value.toBigInt();
+  }
 }

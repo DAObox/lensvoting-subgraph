@@ -12,15 +12,15 @@ type Delegator @entity(immutable: true) {
 }
 
 type Delegate @entity(immutable: true) {
-	"Delegate id"
-	id: ID!
+  "Delegate id"
+  id: ID!
 
-	"Delegate address"
-	address: Bytes!
+  "Delegate address"
+  address: Bytes!
 
-	"Delegate's new voting power"
-	votingPower: BigInt!
+  "Delegate's new voting power"
+  votingPower: BigInt!
 
-	"Time of last delegation"
-	transferedAt: BigInt!
+  "Time of last delegation"
+  transferedAt: BigInt!
 }

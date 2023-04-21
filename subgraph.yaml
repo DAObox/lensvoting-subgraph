@@ -8,7 +8,7 @@ dataSources:
     name: LensVotingNFT
     network: matic
     source:
-      address: "0x03bD27B6FE4f0B3F2C2C9a4289cA2bfcE1DDE95c"
+      address: "0xD3596C81FcAb699192dc79C8e25f1362E3dFf89A"
       abi: LensVotingNFT
       startBlock: 40934510
     mapping:
