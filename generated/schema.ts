@@ -46,13 +46,43 @@ export class Delegator extends Entity {
     this.set("id", Value.fromString(value));
   }
 
-  get delegate(): string | null {
-    let value = this.get("delegate");
+  get address(): Bytes {
+    let value = this.get("address");
     if (!value || value.kind == ValueKind.NULL) {
-      return null;
+      throw new Error("Cannot return null for a required field.");
     } else {
-      return value.toString();
+      return value.toBytes();
     }
+  }
+
+  set address(value: Bytes) {
+    this.set("address", Value.fromBytes(value));
+  }
+
+  get delegateAddress(): Bytes {
+    let value = this.get("delegateAddress");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBytes();
+    }
+  }
+
+  set delegateAddress(value: Bytes) {
+    this.set("delegateAddress", Value.fromBytes(value));
+  }
+
+  get transferedAt(): BigInt {
+    let value = this.get("transferedAt");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBigInt();
+    }
+  }
+
+  set transferedAt(value: BigInt) {
+    this.set("transferedAt", Value.fromBigInt(value));
   }
 }
 
@@ -91,12 +121,42 @@ export class Delegate extends Entity {
     this.set("id", Value.fromString(value));
   }
 
-  get delegator(): string | null {
-    let value = this.get("delegator");
+  get address(): Bytes {
+    let value = this.get("address");
     if (!value || value.kind == ValueKind.NULL) {
-      return null;
+      throw new Error("Cannot return null for a required field.");
     } else {
-      return value.toString();
+      return value.toBytes();
     }
+  }
+
+  set address(value: Bytes) {
+    this.set("address", Value.fromBytes(value));
+  }
+
+  get votingPower(): BigInt {
+    let value = this.get("votingPower");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBigInt();
+    }
+  }
+
+  set votingPower(value: BigInt) {
+    this.set("votingPower", Value.fromBigInt(value));
+  }
+
+  get transferedAt(): BigInt {
+    let value = this.get("transferedAt");
+    if (!value || value.kind == ValueKind.NULL) {
+      throw new Error("Cannot return null for a required field.");
+    } else {
+      return value.toBigInt();
+    }
+  }
+
+  set transferedAt(value: BigInt) {
+    this.set("transferedAt", Value.fromBigInt(value));
   }
 }

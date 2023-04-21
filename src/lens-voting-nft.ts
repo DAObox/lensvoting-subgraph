@@ -2,22 +2,17 @@ import { FollowNFTDelegatedPowerChanged, FollowNFTTransferred } from "../generat
 import { Delegator, Delegate } from "../generated/schema";
 
 export function handleFollowNFTDelegatedPowerChanged(event: FollowNFTDelegatedPowerChanged): void {
-  let delegator = Delegator.load(event.params.delegate.toHexString());
-  if (delegator == null) {
-    delegator = new Delegator(event.params.delegate.toHexString());
-  }
-  delegator.save();
-
-  let delegate = Delegate.load(event.params.delegate.toHexString());
-  if (delegate == null) {
-    delegate = new Delegate(event.params.delegate.toHexString());
-  }
+  let delegate = new Delegate(event.params.delegate.toHexString());
+  delegate.address = event.params.delegate;
+  delegate.votingPower = event.params.newPower;
+  delegate.transferedAt = event.params.timestamp;
   delegate.save();
 }
 
 export function handleFollowNFTTransferred(event: FollowNFTTransferred): void {
-  let delegator = Delegator.load(event.params.from.toHexString());
-  if (delegator != null) {
-    delegator.save();
-  }
+  let delegator = new Delegator(event.params.from.toHexString());
+  delegator.address = event.params.from;
+  delegator.delegateAddress = event.params.to;
+  delegator.transferedAt = event.params.timestamp;
+  delegator.save();
 }

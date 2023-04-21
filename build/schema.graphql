@@ -1,9 +1,26 @@
-type Delegator @entity {
-  id: ID!
-  delegate: Delegate @derivedFrom(field: "delegator")
+type Delegator @entity(immutable: true) {
+	id: ID!
+
+	"Delegator address"
+	address: Bytes!
+
+	"Delegate address"
+	delegateAddress: Bytes!
+
+	"Time of last delegation"
+	transferedAt: BigInt!
 }
 
-type Delegate @entity {
-  id: ID!
-  delegator: Delegator @derivedFrom(field: "delegate")
+type Delegate @entity(immutable: true) {
+	"Delegate id"
+	id: ID!
+
+	"Delegate address"
+	address: Bytes!
+
+	"Delegate's new voting power"
+	votingPower: BigInt!
+
+	"Time of last delegation"
+	transferedAt: BigInt!
 }
