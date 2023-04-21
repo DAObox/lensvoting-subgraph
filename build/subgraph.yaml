@@ -2,7 +2,7 @@ specVersion: 0.0.4
 description: DAOBox LensVotingNFT Aragon Plugin
 repository: https://github.com/DAObox/lensvoting-subgraph
 schema:
-  file: ./schema.graphql
+  file: schema.graphql
 dataSources:
   - kind: ethereum/contract
     name: LensVotingNFT
@@ -20,11 +20,10 @@ dataSources:
         - Delegate
       abis:
         - name: LensVotingNFT
-          file: ./abis/LensVotingNFT.json
+          file: LensVotingNFT/abis/LensVotingNFT.json
       eventHandlers:
         - event: FollowNFTDelegatedPowerChanged(indexed address,indexed uint256,uint256)
           handler: handleFollowNFTDelegatedPowerChanged
         - event: FollowNFTTransferred(indexed uint256,indexed uint256,address,address,uint256)
           handler: handleFollowNFTTransferred
-      file: ./src/lens-voting-nft.ts
-
+      file: LensVotingNFT/LensVotingNFT.wasm
