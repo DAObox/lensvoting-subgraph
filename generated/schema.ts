@@ -12,9 +12,9 @@ import {
 } from "@graphprotocol/graph-ts";
 
 export class Delegator extends Entity {
-  constructor(id: Bytes) {
+  constructor(id: string) {
     super();
-    this.set("id", Value.fromBytes(id));
+    this.set("id", Value.fromString(id));
   }
 
   save(): void {
@@ -22,30 +22,28 @@ export class Delegator extends Entity {
     assert(id != null, "Cannot save Delegator entity without an ID");
     if (id) {
       assert(
-        id.kind == ValueKind.BYTES,
-        `Entities of type Delegator must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`
+        id.kind == ValueKind.STRING,
+        `Entities of type Delegator must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
       );
-      store.set("Delegator", id.toBytes().toHexString(), this);
+      store.set("Delegator", id.toString(), this);
     }
   }
 
-  static load(id: Bytes): Delegator | null {
-    return changetype<Delegator | null>(
-      store.get("Delegator", id.toHexString())
-    );
+  static load(id: string): Delegator | null {
+    return changetype<Delegator | null>(store.get("Delegator", id));
   }
 
-  get id(): Bytes {
+  get id(): string {
     let value = this.get("id");
     if (!value || value.kind == ValueKind.NULL) {
       throw new Error("Cannot return null for a required field.");
     } else {
-      return value.toBytes();
+      return value.toString();
     }
   }
 
-  set id(value: Bytes) {
-    this.set("id", Value.fromBytes(value));
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
   }
 
   get address(): Bytes {
@@ -76,9 +74,9 @@ export class Delegator extends Entity {
 }
 
 export class Delegatee extends Entity {
-  constructor(id: Bytes) {
+  constructor(id: string) {
     super();
-    this.set("id", Value.fromBytes(id));
+    this.set("id", Value.fromString(id));
   }
 
   save(): void {
@@ -86,38 +84,36 @@ export class Delegatee extends Entity {
     assert(id != null, "Cannot save Delegatee entity without an ID");
     if (id) {
       assert(
-        id.kind == ValueKind.BYTES,
-        `Entities of type Delegatee must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`
+        id.kind == ValueKind.STRING,
+        `Entities of type Delegatee must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
       );
-      store.set("Delegatee", id.toBytes().toHexString(), this);
+      store.set("Delegatee", id.toString(), this);
     }
   }
 
-  static load(id: Bytes): Delegatee | null {
-    return changetype<Delegatee | null>(
-      store.get("Delegatee", id.toHexString())
-    );
+  static load(id: string): Delegatee | null {
+    return changetype<Delegatee | null>(store.get("Delegatee", id));
   }
 
-  get id(): Bytes {
+  get id(): string {
     let value = this.get("id");
     if (!value || value.kind == ValueKind.NULL) {
       throw new Error("Cannot return null for a required field.");
     } else {
-      return value.toBytes();
+      return value.toString();
     }
   }
 
-  set id(value: Bytes) {
-    this.set("id", Value.fromBytes(value));
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
   }
 
-  get address(): Array<Bytes> {
+  get address(): Array<string> {
     let value = this.get("address");
     if (!value || value.kind == ValueKind.NULL) {
       throw new Error("Cannot return null for a required field.");
     } else {
-      return value.toBytesArray();
+      return value.toStringArray();
     }
   }
 
@@ -149,9 +145,9 @@ export class Delegatee extends Entity {
 }
 
 export class Delegate extends Entity {
-  constructor(id: Bytes) {
+  constructor(id: string) {
     super();
-    this.set("id", Value.fromBytes(id));
+    this.set("id", Value.fromString(id));
   }
 
   save(): void {
@@ -159,28 +155,28 @@ export class Delegate extends Entity {
     assert(id != null, "Cannot save Delegate entity without an ID");
     if (id) {
       assert(
-        id.kind == ValueKind.BYTES,
-        `Entities of type Delegate must have an ID of type Bytes but the id '${id.displayData()}' is of type ${id.displayKind()}`
+        id.kind == ValueKind.STRING,
+        `Entities of type Delegate must have an ID of type String but the id '${id.displayData()}' is of type ${id.displayKind()}`
       );
-      store.set("Delegate", id.toBytes().toHexString(), this);
+      store.set("Delegate", id.toString(), this);
     }
   }
 
-  static load(id: Bytes): Delegate | null {
-    return changetype<Delegate | null>(store.get("Delegate", id.toHexString()));
+  static load(id: string): Delegate | null {
+    return changetype<Delegate | null>(store.get("Delegate", id));
   }
 
-  get id(): Bytes {
+  get id(): string {
     let value = this.get("id");
     if (!value || value.kind == ValueKind.NULL) {
       throw new Error("Cannot return null for a required field.");
     } else {
-      return value.toBytes();
+      return value.toString();
     }
   }
 
-  set id(value: Bytes) {
-    this.set("id", Value.fromBytes(value));
+  set id(value: string) {
+    this.set("id", Value.fromString(value));
   }
 
   get votingPower(): BigInt {
@@ -196,29 +192,29 @@ export class Delegate extends Entity {
     this.set("votingPower", Value.fromBigInt(value));
   }
 
-  get delegator(): Bytes {
+  get delegator(): string {
     let value = this.get("delegator");
     if (!value || value.kind == ValueKind.NULL) {
       throw new Error("Cannot return null for a required field.");
     } else {
-      return value.toBytes();
+      return value.toString();
     }
   }
 
-  set delegator(value: Bytes) {
-    this.set("delegator", Value.fromBytes(value));
+  set delegator(value: string) {
+    this.set("delegator", Value.fromString(value));
   }
 
-  get delegateeAddress(): Bytes {
+  get delegateeAddress(): string {
     let value = this.get("delegateeAddress");
     if (!value || value.kind == ValueKind.NULL) {
       throw new Error("Cannot return null for a required field.");
     } else {
-      return value.toBytes();
+      return value.toString();
     }
   }
 
-  set delegateeAddress(value: Bytes) {
-    this.set("delegateeAddress", Value.fromBytes(value));
+  set delegateeAddress(value: string) {
+    this.set("delegateeAddress", Value.fromString(value));
   }
 }

@@ -1,9 +1,9 @@
 import { dataSource } from "@graphprotocol/graph-ts";
-import { FollowNFTDelegatedPowerChanged, FollowNFTTransferred } from "../generated/LensVotingNFT/LensVotingNFT";
+import { FollowNFTDelegatedPowerChanged } from "../generated/LensVotingNFT/LensVotingNFT";
 import { Delegator, Delegatee, Delegate } from "../generated/schema";
 
 export function handleFollowNFTDelegatedPowerChanged(event: FollowNFTDelegatedPowerChanged): void {
-  let delegatee = new Delegatee(event.params.delegatee.toBytes().toHexString());
+  let delegatee = new Delegatee(event.params.delegate.toHexString());
   delegatee.votingPower = event.params.newPower;
   delegatee.transferedAt = event.params.timestamp;
   delegatee.save();
