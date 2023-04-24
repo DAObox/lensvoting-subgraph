@@ -18,6 +18,7 @@ export class FollowNFTDelegatedPowerChanged extends ethereum.Event {
 
 export class FollowNFTDelegatedPowerChanged__Params {
   _event: FollowNFTDelegatedPowerChanged;
+    delegatee: any;
 
   constructor(event: FollowNFTDelegatedPowerChanged) {
     this._event = event;
